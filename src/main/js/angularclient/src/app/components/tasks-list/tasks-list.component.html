@@ -33,6 +33,10 @@
         <label><strong>Deadline:</strong></label>
         {{ currentTask.deadline }}
       </div>
+      <div>
+        <label><strong>Category:</strong></label>
+        {{ currentTask.category.name }}
+      </div>
 
       <a class="badge badge-warning" href="/tasks/{{ currentTask.id }}">
         Edit

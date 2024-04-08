@@ -11,8 +11,11 @@ import { CategoryService } from '../../services/category.service';
 export class TaskDetailsComponent implements OnInit {
   currentTask = null;
   message = '';
+  currentCategory = null;
   currentCategoryId = null;
   categories: any;
+  isNameEmpty = false; 
+  isDeadlineEmpty = false; 
 
   constructor(
     private taskService: TaskService,
@@ -42,6 +45,7 @@ export class TaskDetailsComponent implements OnInit {
       .subscribe(
         data => {
           this.currentTask = data;
+          this.currentCategory = this.currentTask.category || null;
           this.currentCategoryId = this.currentTask.category.id || null;
         },
         error => {
@@ -50,6 +54,17 @@ export class TaskDetailsComponent implements OnInit {
   }
 
   updateTask() {
+    if (this.currentTask.name == '') {
+      this.isNameEmpty = true;
+    }
+    if (this.currentTask.deadline == '') {
+      this.isDeadlineEmpty = true;
+    }
+    
+    if (this.isNameEmpty || this.isDeadlineEmpty) {
+        return;
+    }
+
     this.taskService.update(this.currentTask.id, this.currentTask)
       .subscribe(
         response => {
@@ -61,8 +76,22 @@ export class TaskDetailsComponent implements OnInit {
         });
   }
 
-  setActiveCategory(id) {
-    this.currentCategoryId = id;
+  onNameChange() {
+    this.isNameEmpty = false;
+  }
+
+  onDeadlineChange() {
+    this.isDeadlineEmpty = false;
+  }
+
+  onisDeadlineEmptyChange() {
+    if (this.currentTask.deadline == '') this.isDeadlineEmpty = true;
+  }
+
+  setActiveCategory(index) {
+    console.log(444, index, this.categories[index]);
+    this.currentTask.category = this.categories[index];
+    this.currentCategoryId = this.categories[index].id;
   }
 
   deleteTask() {
