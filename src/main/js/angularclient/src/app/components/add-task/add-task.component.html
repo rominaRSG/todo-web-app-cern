@@ -1,0 +1,64 @@
+<div class="submit-form">
+  <div *ngIf="!submitted && !categoriesNotFound && !loading">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        required
+        [(ngModel)]="task.name"
+        name="name"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input
+        class="form-control"
+        id="description"
+        [(ngModel)]="task.description"
+        name="description"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="deadline">Deadline</label>
+      <input
+        class="form-control"
+        id="deadline"
+        required
+        [(ngModel)]="task.deadline"
+        name="deadline"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="category">Category</label>
+      <select class="form-select form-control" #category (change)="setActiveCategory(category.value, i)">
+        <option
+          class="list-group-item"
+          *ngFor="let category of categories; let i = index"
+          (change)="setActiveCategory(category, i)"
+          [value]="category.id"
+        >
+          {{ category.name }}
+        </option>
+      </select>
+    </div>
+
+    <button (click)="saveTask()" class="btn btn-success">Submit</button>
+  </div>
+
+  <div *ngIf="loading">
+    <h4>Loading..</h4>
+  </div>
+
+  <div *ngIf="categoriesNotFound">
+    <h4>Categories not found. Please go to Categories tab and create one before creating a Task.</h4>
+  </div>
+
+  <div *ngIf="submitted">
+    <h4>Task created successfully! Go to Tasks tab to see the new entries.</h4>
+  </div>
+</div>

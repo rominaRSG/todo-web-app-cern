@@ -1,0 +1,47 @@
+<div class="list row">
+  <div class="col-md-6">
+    <h4>Tasks List</h4>
+    <ul class="list-group">
+      <li
+        class="list-group-item"
+        *ngFor="let task of tasks; let i = index"
+        [class.active]="i == currentIndex"
+        (click)="setActiveTask(task, i)"
+      >
+        {{ task.name }}
+      </li>
+    </ul>
+
+    <button class="m-3 btn btn-sm btn-danger" (click)="removeAllTasks()">
+      Remove All
+    </button>
+    <button class="m-3 btn btn-sm btn-success" (click)="addTask()">
+      Add Task
+    </button>
+  </div>
+  <div class="col-md-6">
+    <div *ngIf="currentTask">
+      <h4>Task</h4>
+      <div>
+        <label><strong>Name:</strong></label> {{ currentTask.name }}
+      </div>
+      <div>
+        <label><strong>Description:</strong></label>
+        {{ currentTask.description }}
+      </div>
+      <div>
+        <label><strong>Deadline:</strong></label>
+        {{ currentTask.deadline }}
+      </div>
+
+      <a class="badge badge-warning" href="/tasks/{{ currentTask.id }}">
+        Edit
+      </a>
+    </div>
+
+    <div *ngIf="!currentTask">
+      <br />
+      <p>Please click on a Task...</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="submit-form">
+  <div *ngIf="!submitted">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        required
+        [(ngModel)]="category.name"
+        name="name"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input
+        class="form-control"
+        id="description"
+        required
+        [(ngModel)]="category.description"
+        name="description"
+      />
+    </div>
+
+    <button (click)="saveCategory()" class="btn btn-success">Submit</button>
+  </div>
+
+  <div *ngIf="submitted">
+    <h4>Category created successfully! Go to Categories tab to see the new entries.</h4>
+  </div>
+</div>
