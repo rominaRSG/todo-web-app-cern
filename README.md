@@ -1,9 +1,6 @@
-This is a simple TODO Spring Boot application which which allows users to create, edit and delete TODO tasks.
+This is a simple TODO Spring Boot application which allows users to create, edit and delete TODO tasks.
 
-Below you may find a proposition of the DB model:
-
-Methods 	Urls 	Actions
-
+Exposed endpoints:
 
 | Methods  | Urls | Actions|
 | ------------- | ------------- | ------------- |
@@ -26,3 +23,21 @@ Methods 	Urls 	Actions
 Model of the DB:
 
 ![DB model](DBModel.png)
+
+The UI client is implemented using Angular and alows the user to easily interact with the Java APIs.
+
+Add Task
+
+![add-task](add-task.png)
+
+List All Tasks
+
+![task-list](task-list.png)
+
+Task Update
+
+![task-update](task-update.png)
+
+Categories List
+
+![categories-list](categories-list.png)
